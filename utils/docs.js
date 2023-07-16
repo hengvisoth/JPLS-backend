@@ -35,8 +35,8 @@ const options = {
       description: 'Routes for plate management',
     },
     servers: [
-      { url: 'http://localhost:3001/api' },    // change from port 3000 to 3001
-      { url: 'http://192.168.7.30:3001/api' },
+      { url: 'http://localhost:3000/api' },    // change from port 3000 to 3001
+      { url: 'http://192.168.0.56:3000/api' },
     ],
     openapi: "3.0.0",
     components: {
