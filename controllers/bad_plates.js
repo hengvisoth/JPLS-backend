@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const BadPlate = require("../models/bad_plate");
 
 exports.bad_plates_get_all = async (req, res) => {
@@ -14,6 +16,8 @@ exports.bad_plates_get_one = (req, res) => {
 };
 
 exports.bad_plates_post = async (req, res) => {
+  console.log("POST BAD PLATE" )
+  console.log(req.body)
   const plate = new BadPlate({
     fullname: req.body.fullname,
     phone: req.body.phone,
@@ -23,14 +27,18 @@ exports.bad_plates_post = async (req, res) => {
     gender: req.body.gender,
     age: req.body.age,
     plate_number: req.body.plate_number,
-    organization_name: req.body.organization_name,
-    organization_name_khmer: req.body.organization_name_khmer,
-    badStatus: req.body.badStatus,
+    place_name : req.body.place_name, 
+    kana_text : req.body.kana_text, 
+    classification_number : req.body.classification_number,
+    // organization_name: req.body.organization_name,
+    // organization_name_khmer: req.body.organization_name_khmer,
+    // badStatus: req.body.badStatus,
   });
   try {
     const newPlate = await plate.save();
     res.status(201).json(newPlate);
   } catch (err) {
+    console.log(err	)
     res.status(400).json({ message: err.message });
   }
 };
@@ -60,12 +68,21 @@ exports.bad_plates_update = async (req, res) => {
   if (req.body.plate_number != null) {
     res.plate.plate_number = req.body.plate_number;
   }
-  if (req.body.organization_name != null) {
-    res.plate.organization_name = req.body.organization_name;
+  if (req.body.kana_text != null) {
+    res.plate.kana_text = req.body.kana_text;
   }
-  if (req.body.organization_name_khmer != null) {
-    res.plate.organization_name_khmer = req.body.organization_name_khmer;
+  if (req.body.classification_number != null) {
+    res.plate.classification_number = req.body.classification_number;
   }
+  if (req.body.place_name != null) {
+    res.plate.place_name = req.body.place_name;
+  }
+  // if (req.body.organization_name != null) {
+  //   res.plate.organization_name = req.body.organization_name;
+  // }
+  // if (req.body.organization_name_khmer != null) {
+  //   res.plate.organization_name_khmer = req.body.organization_name_khmer;
+  // }
   if (req.body.badStatus != null) {
     res.plate.badStatus = req.body.badStatus;
   }
@@ -73,6 +90,7 @@ exports.bad_plates_update = async (req, res) => {
     const updatedPlate = await res.plate.save();
     res.json(updatedPlate);
   } catch (err) {
+    console.log(err)
     res.status(400).json({ message: err.message });
   }
 };

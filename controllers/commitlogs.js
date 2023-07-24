@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const commitlogs = require("../models/commitlog");
 const CurrentlyIn = require("../models/currently_in");
 const KnownPlate = require("../models/known_plate");
@@ -29,7 +31,8 @@ const commitlog_post = async (req, res) => {
     status,
     vehicle_type,
   } = req.body;
-  console.log(time,  classification_number,
+
+  console.log( classification_number,
     place_name,
     kana_text , );
   const timeNow = new Date(time);
@@ -68,9 +71,12 @@ const commitlog_post = async (req, res) => {
     }
 
     const detectedPlate = new PlateLog({
-      organization_name_khmer: organization_name_khmer,
+      // organization_name_khmer: organization_name_khmer,
       plate_number: req.body.plate_number,
-      organization_name: organization_name,
+      // organization_name: organization_name,
+      classification_number : classification_number,
+      kana_text : kana_text,
+      place_name : place_name,
       location: location,
       type: type,
       time: timeNow,
@@ -97,9 +103,12 @@ const commitlog_post = async (req, res) => {
     } else {
       // car/moto is not inside, so add in commitlog & add in Currently_in & add in plate_logs
       const inPlate = new CurrentlyIn({
-        organization_name_khmer: organization_name_khmer,
+        // organization_name_khmer: organization_name_khmer,
         plate_number: req.body.plate_number,
-        organization_name: organization_name,
+        // organization_name: organization_name,
+        classification_number : classification_number,
+        kana_text : kana_text,
+        place_name : place_name,
         location: location,
         type: type,
         time: timeNow,
@@ -158,9 +167,9 @@ const commitlog_post = async (req, res) => {
 
     if ((type == "bad" || type == "unknown") || plate_number !== "No Plate") {
       let message =
-        `${organization_name_khmer}\n` +
+        // `${organization_name_khmer}\n` +
         `${req.body.plate_number}\n` +
-        `${organization_name}\n` +
+        // `${organization_name}\n` +
         `Status: ${detectedPlate.status}\n` +
         `Date: ${time.toString().slice(0, 10)}\n` +
         `Time: ${time.toString().slice(11, 19)}\n` +

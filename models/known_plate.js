@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const mongoose = require("mongoose");
 
 const known_plateSchema = new mongoose.Schema({
@@ -27,14 +29,27 @@ const known_plateSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  organization_name: {
+
+  // Make Changes for JP
+  place_name: {
     type: String,
     required: true,
   },
-  organization_name_khmer: {
+  kana_text: {
     type: String,
     required: true,
   },
+
+  classification_number: {
+    type: String,
+    required: true,
+  },
+  // organization_name: {
+  //   type: String,
+  // },
+  // organization_name_khmer: {
+  //   type: String,
+  // },
 });
 
 module.exports = mongoose.model("KnownPlate", known_plateSchema);

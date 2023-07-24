@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const CurrentlyIn = require("../models/currently_in");
 const PlateLog = require("../models/plate_log");
 const { query_plates } = require("../utils/pagination");
@@ -15,8 +17,12 @@ const currently_in_approve = async (req, res) => {
   try {
     const {
       plate_number,
-      organization_name,
-      organization_name_khmer,
+      place_name, 
+      kana_text , 
+      classification_number,
+
+      // organization_name,
+      // organization_name_khmer,
       plate,
       change,
       temperature,
@@ -41,8 +47,11 @@ const currently_in_approve = async (req, res) => {
       let remove_plate_currently_in = false;
       if (change == true) {
         plate_currently_in.plate_number = plate_number;
-        plate_currently_in.organization_name = organization_name;
-        plate_currently_in.organization_name_khmer = organization_name_khmer;
+        plate_currently_in.place_name = place_name;
+        plate_currently_in.kana_text = kana_text;
+        plate_currently_in.classification_number = classification_number;
+        // plate_currently_in.organization_name = organization_name;
+        // plate_currently_in.organization_name_khmer = organization_name_khmer;
         plate_currently_in.num_people = num_people;
         plate_currently_in.phone_number = phone_number;
         plate_currently_in.reason = reason;
@@ -89,8 +98,11 @@ const currently_in_approve = async (req, res) => {
     if (plate_plate_log != null) {
       if (change == true) {
         plate_plate_log.plate_number = plate_number;
-        plate_plate_log.organization_name = organization_name;
-        plate_plate_log.organization_name_khmer = organization_name_khmer;
+        plate_plate_log.place_name = place_name;
+        plate_plate_log.kana_text = kana_text;
+        plate_plate_log.classification_number = classification_number;
+        // plate_plate_log.organization_name = organization_name;
+        // plate_plate_log.organization_name_khmer = organization_name_khmer;
         plate_plate_log.reason = reason;
         plate_plate_log.num_people = num_people;
         plate_plate_log.phone_number = phone_number;

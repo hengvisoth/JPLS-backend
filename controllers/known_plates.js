@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const KnownPlate = require("../models/known_plate");
 
 exports.known_plates_get_all = async (req, res) => {
@@ -23,8 +25,12 @@ exports.known_plates_post = async (req, res) => {
     gender: req.body.gender,
     age: req.body.age,
     plate_number: req.body.plate_number,
-    organization_name: req.body.organization_name,
-    organization_name_khmer: req.body.organization_name_khmer,
+    place_name : req.body.place_name,
+    kana_text : req.body.kana_text,
+    classification_number : req.body.classification_number,
+    
+    // organization_name: req.body.organization_name,
+    // organization_name_khmer: req.body.organization_name_khmer,
   });
   try {
     const newKnownPlate = await plate.save();
@@ -59,12 +65,22 @@ exports.known_plates_update = async (req, res) => {
   if (req.body.plate_number != null) {
     res.plate.plate_number = req.body.plate_number;
   }
-  if (req.body.organization_name != null) {
-    res.plate.organization_name = req.body.organization_name;
+  if (req.body.place_name != null) {
+    res.plate.place_name = req.body.place_name;
   }
-  if (req.body.organization_name_khmer != null) {
-    res.plate.organization_name_khmer = req.body.organization_name_khmer;
+  if (req.body.kana_text != null) {
+    res.plate.kana_text = req.body.kana_text;
   }
+  if (req.body.classification_number != null) {
+    res.plate.classification_number = req.body.classification_number;
+  }
+
+  // if (req.body.organization_name != null) {
+  //   res.plate.organization_name = req.body.organization_name;
+  // }
+  // if (req.body.organization_name_khmer != null) {
+  //   res.plate.organization_name_khmer = req.body.organization_name_khmer;
+  // }
 
   try {
     const updatedKnownPlate = await res.plate.save();

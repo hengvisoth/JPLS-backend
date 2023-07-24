@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 require("dotenv").config();
 process.env["NTBA_FIX_319"] = 1; // telegram: cancellation of promises
 const express = require("express");
@@ -42,7 +44,9 @@ const startServer = async () => {
   app.use(apiPrefix+"/currently_in", currently_insRouter);
   app.use(apiPrefix+"/plate_logs", plate_logsRouter);
   app.use('/docs', swaggerUi.serve, swaggerUi.setup(docs.specs));
-  app.use(express.static('../realtime_images'));
+  app.use(express.static('public'));
+
+  app.use(express.static('realtime_images'));
 
   app.use(express.static(__dirname + "/dist/"));
   app.get(/.*/, (req, res) => res.sendFile(__dirname + "/dist/index.html"));

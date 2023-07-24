@@ -45,6 +45,6 @@ router.post("/login", UserControllers.user_login);
  *    500:
  *     description: Internal server error
  */
-// router.post("/signup", UserControllers.user_signup);
+router.post("/signup", UserControllers.user_signup);
 
 module.exports = router;

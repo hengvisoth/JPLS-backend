@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const PlateLog = require("../models/plate_log");
 const KnownPlate = require("../models/known_plate");
 const BadPlate = require("../models/bad_plate");

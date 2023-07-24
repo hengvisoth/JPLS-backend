@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const mongoose = require("mongoose");
 
 const plate_logSchema = new mongoose.Schema({
