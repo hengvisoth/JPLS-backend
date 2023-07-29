@@ -66,11 +66,15 @@ exports.plate_logs_approve = async (req, res) => {
       vehicle_type,
       status,
       approved_by,
+      kana_text, 
+      classification_number , 
+      place_name
     } = req.body;
     let updatedPlates = [];
     let plate_plate_log = await PlateLog.findOne({
       _id: plate._id,
     });
+    console.log(req.body)
     if (plate_plate_log == null) {
       return res
         .status(404)
@@ -80,6 +84,9 @@ exports.plate_logs_approve = async (req, res) => {
         plate_plate_log.plate_number = plate_number;
         plate_plate_log.organization_name = organization_name;
         plate_plate_log.organization_name_khmer = organization_name_khmer;
+        plate_plate_log.kana_text = kana_text;
+        plate_plate_log.classification_number = classification_number;
+        plate_plate_log.place_name = place_name;
         plate_plate_log.reason = reason;
         plate_plate_log.num_people = num_people;
         plate_plate_log.phone_number = phone_number;
@@ -164,6 +171,7 @@ exports.plate_logs_approve = async (req, res) => {
 
     res.json(updatedPlates);
   } catch (err) {
+    console.log (err)
     return res.status(500).json({ message: err.message });
   }
 };
