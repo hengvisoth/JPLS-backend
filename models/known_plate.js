@@ -27,7 +27,6 @@ const known_plateSchema = new mongoose.Schema({
   plate_number: {
     type: String,
     required: true,
-    unique: true,
   },
 
   // Make Changes for JP
@@ -44,6 +43,10 @@ const known_plateSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  license_plate : {
+    type: String,
+    unique : true ,
+  } ,
   // organization_name: {
   //   type: String,
   // },

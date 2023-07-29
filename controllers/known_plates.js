@@ -28,7 +28,7 @@ exports.known_plates_post = async (req, res) => {
     place_name : req.body.place_name,
     kana_text : req.body.kana_text,
     classification_number : req.body.classification_number,
-    
+    license_plate : req.body.place_name+ req.body.classification_number + req.body.kana_text+ req.body.plate_number,
     // organization_name: req.body.organization_name,
     // organization_name_khmer: req.body.organization_name_khmer,
   });
@@ -74,6 +74,7 @@ exports.known_plates_update = async (req, res) => {
   if (req.body.classification_number != null) {
     res.plate.classification_number = req.body.classification_number;
   }
+  res.plate.license_plate = req.body.place_name + req.body.classification_number + req.body.kana_text + req.body.plate_number;
 
   // if (req.body.organization_name != null) {
   //   res.plate.organization_name = req.body.organization_name;
@@ -102,7 +103,7 @@ exports.known_plates_delete = async (req, res) => {
 exports.KnownPlateID = async function getKnownPlate(req, res, next) {
   let plate;
   try {
-    plate = await KnownPlate.findOne({ plate_number: req.params.id });
+    plate = await KnownPlate.findOne({ license_plate: req.params.id });
     if (plate == null) {
       return res.status(404).json({ message: "Cannot find plate" });
     }

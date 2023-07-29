@@ -40,6 +40,11 @@ const bad_plateSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  license_plate : {
+    type: String,
+    unique: true,
+
+  } , 
   // organization_name: {
   //   type: String,
   // },
