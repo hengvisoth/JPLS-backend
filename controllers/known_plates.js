@@ -85,8 +85,10 @@ exports.known_plates_update = async (req, res) => {
 
   try {
     const updatedKnownPlate = await res.plate.save();
+    console.log(updatedKnownPlate)
     res.json(updatedKnownPlate);
   } catch (err) {
+    console.log(err)
     res.status(400).json({ message: err.message });
   }
 };
@@ -103,6 +105,7 @@ exports.known_plates_delete = async (req, res) => {
 exports.KnownPlateID = async function getKnownPlate(req, res, next) {
   let plate;
   try {
+    console.log(req.params.id)
     plate = await KnownPlate.findOne({ license_plate: req.params.id });
     if (plate == null) {
       return res.status(404).json({ message: "Cannot find plate" });

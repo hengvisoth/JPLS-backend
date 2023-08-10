@@ -70,6 +70,7 @@ exports.plate_logs_approve = async (req, res) => {
       classification_number , 
       place_name
     } = req.body;
+    console.log(req.body)
     let updatedPlates = [];
     let plate_plate_log = await PlateLog.findOne({
       _id: plate._id,

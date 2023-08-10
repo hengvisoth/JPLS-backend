@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const express = require("express");
 const router = express.Router();
 const checkAuth = require("../middleware/check-auth");
@@ -46,5 +48,9 @@ router.post("/login", UserControllers.user_login);
  *     description: Internal server error
  */
 router.post("/signup", UserControllers.user_signup);
+
+router.post("/forget-password", UserControllers.user_forgetPassword)
+
+router.post("/verify-otp",UserControllers.verifyOTP)
 
 module.exports = router;

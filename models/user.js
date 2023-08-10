@@ -8,6 +8,8 @@ const userSchema = mongoose.Schema({
     required: true,
   },
   password: { type: String, required: true },
+  otp : {type:String} ,
+  otpExpires : {type:Date}
 });
 
 module.exports = mongoose.model("User", userSchema);
